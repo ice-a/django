@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情页</title>
+</head>
+<body>
+    <H2>详情页</H2>
+    {%  if brands  %}
+    <h3>{{brands.title}}</h3>
+    <ul>{% for subbrand in brands.subbrand_set.all %}
+            <li>{{subbrand.subbrandname}}---{{subbrand.color}}---{{subbrand.memory}}</li>
+        {% empty %}
+        <li>没有子品牌</li>
+        {% endfor%}
+    </ul>
+
+    {%  else  %}
+    没有品牌信息
+    {%  endif  %}
+</body>
+</html>
