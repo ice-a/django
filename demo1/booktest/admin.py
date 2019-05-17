@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import book,hero
+from .models import book,hero,testmanage
 #一个功能强大的后台管理功能
 # Register your models here.
 class heroInine(admin.StackedInline):
@@ -18,4 +18,5 @@ class heroAdmin(admin.ModelAdmin):
     search_fields = ['name','gender','skill','wj']
 admin.site.register(book,bookAdmin)
 admin.site.register(hero,heroAdmin)
+
 

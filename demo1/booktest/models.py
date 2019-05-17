@@ -15,3 +15,20 @@ class hero(models.Model):
     wj=models.ForeignKey(book,on_delete=models.CASCADE,verbose_name='书')
     def __str__(self):
         return self.name
+class manageEXT(models.Manager):
+    def createmethd(self,title):
+        # t=self.model()==testmanage()
+        t=testmanage()
+        t.title=title
+        t.save()
+    def delete(self,pk):
+        self.get(pk=pk).delete()
+class testmanage(models.Model):
+    title=models.CharField(max_length=30)
+    manage=models.Manager()
+    manage2=manageEXT()
+    @classmethod
+    def createmethod(cls,_title):
+        t=cls(title = _title)
+        # t.title=title
+        t.save()
