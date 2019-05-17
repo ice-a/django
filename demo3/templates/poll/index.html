@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+{{alltest}}}
+    <h1>选择你喜欢的话题吧！！！</h1>
+        {%  if alltest %}
+            {%  for test in alltest %}
+                <ul><li>
+                    <a href="{% url 'poll:deatil' test.id %}">{{test.title}}</a>
+                    </li>
+                </ul>
+            {%  empty  %}
+            {%  endfor   %}
+
+
+        {%  else  %}
+            没有收到书籍
+        {%  endif  %}
+
+
+</body>
+</html>
