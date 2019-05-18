@@ -8,4 +8,4 @@ class test(models.Model):
     resualtA=models.IntegerField(null=True,verbose_name="A选项的结果")
     resualtB=models.IntegerField(null=True,verbose_name="B选项的结果")
     def __str__(self):
-        return '%s,%s,%s,%d%d'%(self.title,self.choseA,self.choseB,self.resualtA,self.resualtB)
+        return '%s,%s,%s'%(self.title,self.choseA,self.choseB)

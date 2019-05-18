@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-app_name="pool"
+app_name="poll"
 urlpatterns = [
     url(r'^result/(\d+)/$',views.result,name='result'),
     url(r'^deatil/(\d+)/$',views.deatil,name='deatil'),

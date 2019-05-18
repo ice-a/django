@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>投票结果显示页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-
+    <div class="container">
+        {{obj.title}}
+        <li>{{obj.choseA}}<span>{{obj.resualtA}}</span><span>票</span></li>
+        <li>{{obj.choseB}}<span>{{obj.resualtB}}</span><span>票</span></li>
+        <a href="{% url 'poll:index' %}">返回主页</a>
+    </div>
 </body>
 </html>
