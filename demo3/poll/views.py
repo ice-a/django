@@ -48,3 +48,15 @@ def deatil(request,id):
 def result(request,id):
     obj = test.objects.get(pk=id)
     return render(request, 'poll/result.html', {"obj": obj})
+def addtest(request):
+    if request.method=="GET":
+        return render(request,'poll/addtest.html')
+    elif request.method=="POST":
+        newtest=test()
+        newtest.title=request.POST["title"]
+        newtest.choseA=request.POST["choseA"]
+        newtest.choseB=request.POST["choseB"]
+        # newtest.resualtA=request.POST["resualtA"]
+        # newtest.resualtB=request.POST["resualtB"]
+        newtest.save()
+        return HttpResponseRedirect("/poll/index/")
