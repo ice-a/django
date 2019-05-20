@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
+    {{request.user}}
     <div class="container">
         <h1>选择你喜欢的话题吧！！！</h1>
         {%  if alltest %}
             {%  for test in alltest %}
                 <ul><li>
-                    <a href="{% url 'poll:deatil' test.id %}">{{test.title}}</a>
+
+
+                    {{ forloop.counter }}-<a href="{% url 'poll:deatil' test.id %}">{{test.title}}</a>
                     <a href="{% url 'poll:delete' test.id %}">删除话题</a>
                     </li>
                 </ul>
@@ -21,8 +24,6 @@
         {%  else  %}
         {%  endif  %}
         <a href="{% url 'poll:addtest' %}">添加话题</a>
-
     </div>
-
 </body>
 </html>

@@ -1,8 +1,20 @@
 from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
+from django.views.generic import View
 from  .models import test,user
 # Create your views here.
+class Login(View):
+    def get(self,request):
+        return render(request,'poll/login.html')
+    def post(self,request):
+        username=request.POST.get("username")
+        if username=='zzy':
+            res=redirect(reverse('poll:index'))
+            res.set_cookie('username',username)
+            return  res
+        else:
+            return render(request, 'poll/login.html',{"error":"用户名或密码错误"})
 def index(request):
     tests = test.objects.all()
     temp = loader.get_template('poll/index.html')

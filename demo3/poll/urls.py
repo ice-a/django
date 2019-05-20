@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^index/$',views.index,name='index'),
     url(r'^addtest/$',views.addtest,name='addtest'),
     url(r'^delete/(\d+)/$',views.delete,name='delete'),
+    url(r'^login/$',views.Login.as_view(),name='login'),
 ]
