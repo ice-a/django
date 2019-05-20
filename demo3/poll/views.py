@@ -1,27 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
-from  .models import test
+from  .models import test,user
 # Create your views here.
 def index(request):
     tests = test.objects.all()
     temp = loader.get_template('poll/index.html')
     result = temp.render({"alltest": tests})
     return HttpResponse(result)
-# def deatil(request,id):
-#     if request=="POST":
-#         return HttpResponse("测试已经联通，返回了post")
-#     elif request=="GET":
-#         return HttpResponse("测试已经联通，返回了get")
-#     else:
-#         print("get")
-#         return HttpResponse("测试已经联通，返回了else")
-        # testtitle = test.objects.get(pk=id)
-        # temp = loader.get_template('poll/deatil.html')
-        # result = temp.render({"testtitle": testtitle})
-        # return HttpResponse(result)
-        # return render(request, 'poll/deatil.html', {"testtitle": testtitle})
-#
 def deatil(request,id):
     if request.method=="GET":
         testtitle = test.objects.get(pk=id)
@@ -60,3 +46,7 @@ def addtest(request):
         # newtest.resualtB=request.POST["resualtB"]
         newtest.save()
         return HttpResponseRedirect("/poll/index/")
+def delete(request,id):
+    obj=test.objects.get(pk=id)
+    obj.delete()
+    return HttpResponseRedirect("/poll/index/")

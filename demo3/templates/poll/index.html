@@ -13,6 +13,7 @@
             {%  for test in alltest %}
                 <ul><li>
                     <a href="{% url 'poll:deatil' test.id %}">{{test.title}}</a>
+                    <a href="{% url 'poll:delete' test.id %}">删除话题</a>
                     </li>
                 </ul>
             {%  empty  %}
@@ -20,6 +21,7 @@
         {%  else  %}
         {%  endif  %}
         <a href="{% url 'poll:addtest' %}">添加话题</a>
+
     </div>
 
 </body>

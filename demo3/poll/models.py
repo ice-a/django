@@ -8,3 +8,6 @@ class test(models.Model):
     resualtB=models.IntegerField(null=True,verbose_name="B选项的结果",default=0)
     def __str__(self):
         return '%s,%s,%s'%(self.title,self.choseA,self.choseB)
+class user(models.Model):
+    username=models.CharField(max_length=30,verbose_name="用户名字")
+    password=models.CharField(max_length=30,verbose_name="用户密码")
