@@ -9,7 +9,7 @@
 {% block body %}
 
     <div class="container">
-        <h3>当前账号：{{ user }}<a href="{% url 'poll:logout' %}">登出</a></h3>
+        <h3>当前账号：{{ request.user  }}<a href="{% url 'poll:logout' %}">登出</a></h3>
         <h1>选择你喜欢的话题吧！！！</h1>
         {%  if alltest %}
             {%  for test in alltest %}
