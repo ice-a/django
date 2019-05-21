@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
 class test(models.Model):
     title=models.CharField(max_length=30,verbose_name='投票列表')
@@ -8,6 +9,8 @@ class test(models.Model):
     resualtB=models.IntegerField(null=True,verbose_name="B选项的结果",default=0)
     def __str__(self):
         return '%s,%s,%s'%(self.title,self.choseA,self.choseB)
-class user(models.Model):
-    username=models.CharField(max_length=30,verbose_name="用户名字")
-    password=models.CharField(max_length=30,verbose_name="用户密码")
+class Myuser(User):
+    url = models.URLField(blank=True, null=True, default="http://www.baidu.com")
+    class Meta():
+        verbose_name = "用户"
+        verbose_name_plural = verbose_name
