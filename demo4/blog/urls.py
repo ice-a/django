@@ -4,5 +4,6 @@ app_name = 'blog'
 urlpatterns = [
 
     url(r'^detail/(\d+)/$', views.detail, name='detail'),
+    url(r'^archives/(\d+)/(\d+)/$',views.archives,name='archives'),
     url(r'^$', views.index, name='index'),
 ]

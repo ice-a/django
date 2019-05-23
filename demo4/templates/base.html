@@ -79,29 +79,28 @@
                 <div class="widget widget-recent-posts">
                     <h3 class="widget-title">最新文章</h3>
                     <ul>
-                        <li>
-                            <a href="#">Django 博客开发入门教程：前言</a>
-                        </li>
-                        <li>
-                            <a href="#">Django 博客使用 Markdown 自动生成文章目录</a>
-                        </li>
-                        <li>
-                            <a href="#">部署 Django 博客</a>
-                        </li>
+                        {% getlatestarticles as latestarticles %}
+                        {% for i in latestarticles %}
+                        <li><a href="{% url 'blog:detail' i.id %}">{{ i.title }}</a></li>
+                        {% empty %}
+                        没有最近文章
+                        
+                        {% endfor %}
+
+
                     </ul>
                 </div>
                 <div class="widget widget-archives">
                     <h3 class="widget-title">归档</h3>
                     <ul>
-                        <li>
-                            <a href="#">2017 年 5 月</a>
-                        </li>
-                        <li>
-                            <a href="#">2017 年 4 月</a>
-                        </li>
-                        <li>
-                            <a href="#">2017 年 3 月</a>
-                        </li>
+                        {% getarchives as archives %}
+                        {% for i in archives %}
+                        <li><a href="{% url 'blog:archives' i.year i.month %}">{{i.year}} 年 {{i.month}} 月</a></li>
+                        {% empty %}
+                        默认对象
+                        
+                        {% endfor %}
+
                     </ul>
                 </div>
 
