@@ -107,10 +107,10 @@
                 <div class="widget widget-category">
                     <h3 class="widget-title">分类</h3>
                     <ul>
-                        {% getcategorys as categorys  %}
+                        {% getcategorys  as categorys  %}
                         {% for category in categorys %}
 
-                            <li><a href="#"> {{ category.title }} <span class="post-count">{{ category.article_set.count }} </span>   </a></li>
+                            <li><a href="{% url 'blog:category' category.id %}"> {{ category.title }} <span class="post-count">( {{ category.article_set.count }} )</span>   </a></li>
                         {% endfor %}
 
                     </ul>
@@ -119,40 +119,19 @@
                 <div class="widget widget-tag-cloud">
                     <h3 class="widget-title">标签云</h3>
                     <ul>
-                        <li>
-                            <a href="#">Django</a>
+                        {% gettags as tags %}
+                        {% for tag in tags %}
+                         <li>
+                            <a href="{% url 'blog:tag' tag.id %}">{{ tag.title }}</a>
                         </li>
-                        <li>
-                            <a href="#">Python</a>
-                        </li>
-                        <li>
-                            <a href="#">Java</a>
-                        </li>
-                        <li>
-                            <a href="#">笔记</a>
-                        </li>
-                        <li>
-                            <a href="#">文档</a>
-                        </li>
-                        <li>
-                            <a href="#">AngularJS</a>
-                        </li>
-                        <li>
-                            <a href="#">CSS</a>
-                        </li>
-                        <li>
-                            <a href="#">JavaScript</a>
-                        </li>
-                        <li>
-                            <a href="#">Snippet</a>
-                        </li>
-                        <li>
-                            <a href="#">jQuery</a>
-                        </li>
+                        {% empty %}
+                            <li>没有标签</li>
+                        {% endfor %}
+
                     </ul>
                 </div>
                 <div class="rss">
-                    <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                    <a href="{% url 'blog:rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
             </aside>
         </div>
@@ -185,6 +164,5 @@
 </div>
 
 <script src="/static/js/script.js"></script>
-
 </body>
 </html>

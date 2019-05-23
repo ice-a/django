@@ -23,3 +23,7 @@ def getlatestarticles(num=3):
 @register.simple_tag
 def getarchives(num=3):
     return Article.objects.dates("create_time",'month',order='DESC')[:num]
+
+@register.simple_tag
+def gettags():
+    return Tag.objects.all()
