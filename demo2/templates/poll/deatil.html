@@ -1,0 +1,18 @@
+{% extends 'poll/index.html' %}
+{% block title %}
+投票详情页
+{%endblock%}
+{% block body %}
+    <div class="container">
+    <form action="{% url 'poll:deatil' testtitle.id %}" method="post">
+    <h1>{{testtitle.title}}</h1>
+    <ul>
+        <li><input type="radio" name="sex" checked value="{{testtitle.choseA}}">{{testtitle.choseA}}</li>
+        <li><input type="radio" name="sex" value="{{testtitle.choseB}}">{{testtitle.choseB}}</li>
+        <input type="submit" value="投票">
+    </ul>
+        <a href="{% url 'poll:index' %}"></a>
+</form>
+</div>
+
+{%endblock%}

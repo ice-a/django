@@ -1,0 +1,19 @@
+{% extends 'poll/base.html' %}
+{% block title %}
+    注册页面
+{%endblock%}
+{% block link %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/main.css">
+{%endblock%}
+{% block body %}
+    <div class="container">
+        <form action="#" method="post">
+            用户名:<input type="text" name="username">
+            <br>
+            密码： <input type="password" name="password">
+            <br>
+            <input type="submit" value="注册">
+        </form>
+    </div>
+{%endblock%}

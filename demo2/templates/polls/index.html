@@ -1,0 +1,26 @@
+{% extends 'polls/base.html' %}
+{% block title %}
+问题索引
+{% endblock %}
+
+
+{% block body %}
+
+{# {{username}} #}
+<h3>当前用户：{{ request.user }}  <a href="{% url 'polls:logout' %}">登出</a></h3>
+
+<h2>问题索引</h2>
+<ul>
+    {% for q in questions %}
+    <li><a href="{% url 'polls:detail' q.id %}"> {{ forloop.counter }} {{ q.title }} </a></li>
+    {% empty %}
+    <li>没有投票</li>
+    {% endfor %}
+
+
+</ul>
+
+
+{% endblock %}
+
+

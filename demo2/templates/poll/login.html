@@ -1,0 +1,113 @@
+{% extends 'poll/base.html' %}
+{% block title %}
+    登录界面
+{%endblock%}
+
+{% block body %}
+{{error}}
+
+<h1>登录注册</h1>
+<div class="container">
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab"
+                                                      data-toggle="tab">login</a></li>
+            <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">register</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="login">
+                <h1 style="text-align: center">用户登录</h1>
+                <form class="form-horizontal" action="{% url 'poll:login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username_login" class="col-sm-2 control-label">账号：</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="username_login" class="form-control" id="username_login"
+                                   placeholder="请输入账号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_login" class="col-sm-2 control-label">密码：</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password_login" class="form-control" id="password_login"
+                                   placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">登录</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label for="verify" class="col-sm-2 control-label">验证码：</label>
+                    <div class="col-sm-2">
+                        <img src="{% url 'poll:verify' %}" alt="" width="100" height="35">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" name="verify" class="form-control" id="verify" placeholder="请输入验证码">
+                    </div>
+                </div>
+                </form>
+                    <script>
+                        $(function(){
+                            $("#username").blur(function(){
+                                $.ajax({
+                                    url:"/poll/checkuser/",
+                                    type:"post",
+                                    data:{"username": $("#username").val(),
+                                     "csrfmiddlewaretoken": '{{ csrf_token }}'
+                                     },
+                                    success: function(data){
+                                        if(data.state)
+                                        {
+                                        $("#info").text("")
+                                        }
+                                        else
+                                        {
+                                        $("#info").text(data.error)
+                                        }
+                                    }
+                                })
+                            })
+                        })
+                    </script>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="register">
+                <h1 style="text-align: center">用户注册</h1>
+                <form class="form-horizontal" action="{% url 'poll:register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username_register" class="col-sm-2 control-label">账号：</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="username_register" class="form-control" id="username_register"
+                                   placeholder="请输入账号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_register" class="col-sm-2 control-label">密码：</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password_register" class="form-control" id="password_register"
+                                   placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">输入邮箱：</label>
+                    <div class="col-sm-10">
+                        <input type="email" name="email" class="form-control" id="email"
+                               placeholder="请输入邮箱">
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">注册</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
