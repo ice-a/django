@@ -23,7 +23,6 @@
     <h3>发表评论</h3>
     <form action="{% url 'comments:addcomment' article.id %}" method="post" class="comment-form">
         {% csrf_token %}
-
         <div class="row">
             <div class="col-md-4">
                 <label for="id_name">名字：</label>
@@ -44,21 +43,23 @@
             </div>
         </div>    <!-- row -->
     </form>
+
+
+
     <div class="comment-list-panel">
-        <h3>评论列表，共 <span>{{ article.comment_set.count }}</span> 条评论</h3>
+        <h3>评论列表，共 <span> {{ article.comment_set.count }} </span> 条评论</h3>
         <ul class="comment-list list-unstyled">
 
-            {% for i in article.comment_set.all %}
+            {% for c in article.comment_set.all %}
                 <li class="comment-item">
-                <span class="nickname">{{ i.username }}</span>
-                <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">{{ i.create_time }}</time>
+                <span class="nickname">{{ c.username }}</span>
+                <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">{{ c.create_time }}</time>
                 <div class="text">
-                    {{ i.content }}
+                    {{ c.content  }}
                 </div>
             </li>
             {% empty %}
-            <li>没有评论</li>
-
+                <li>评论</li>
             {% endfor %}
 
 

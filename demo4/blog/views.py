@@ -5,6 +5,8 @@ from django.core.paginator import Paginator
 import markdown
 from django.views.generic import View
 from .forms import ContactForm
+from django.core.mail import send_mail,send_mass_mail
+from django.conf import settings
 from datetime import datetime
 # Create your views here.
 from comments.forms import CommentForm
@@ -61,6 +63,10 @@ class Contacts(View):
         cf = ContactForm()
         return render(request, 'contact.html',locals())
     def post(self,request):
+        try:
+            send_mail('ice', "这是一封邮件", settings.DEFAULT_FROM_EMAIL, ['1943158197@qq.com', '2357725809@qq.com'])
+        except Exception as e:
+            print(e)
         cf = ContactForm(request.POST)
         cf.save()
         cf = ContactForm()

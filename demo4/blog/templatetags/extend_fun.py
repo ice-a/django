@@ -1,5 +1,5 @@
 from django import template
-from ..models import Article,Category,Tag
+from ..models import Article,Category,Tag,Abs
 register = template.Library()
 
 @register.filter(name='mylower')
@@ -27,3 +27,7 @@ def getarchives(num=3):
 @register.simple_tag
 def gettags():
     return Tag.objects.all()
+
+@register.simple_tag
+def getabs():
+    return Abs.objects.all()
