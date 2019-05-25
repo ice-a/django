@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect,reverse
 from django.http import HttpResponse
-from .models import Article,Category,Tag
+from .models import Article,Category,Tag,Abs
 from django.core.paginator import Paginator
 import markdown
 from django.views.generic import View
@@ -71,3 +71,19 @@ class Contacts(View):
         cf.save()
         cf = ContactForm()
         return render(request, 'contact.html', {"info":'成功',"cf":cf})
+class Ads(View):
+    def get(self,request):
+        return render(request,'addads.html')
+    def post(self, request):
+        img=request.FILES['img']
+        desc=request.POST.get('desc')
+        ad=Abs(img=img,desc=desc)
+        ad.save()
+        return  redirect(reverse("blog:index"))
+
+
+
+
+
+
+
