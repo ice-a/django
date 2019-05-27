@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'comments',
     'tinymce',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,14 @@ DEFAULT_FROM_EMAIL = 'ice <2357725809@qq.com>'
 # 配置图片
 MEDIA_ROOT=os.path.join(BASE_DIR,"static/media")
 
+#配置whoosh
+HAYSTACK_CONNECTIONS = {
+'default': {
+'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
+'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+}
+}
+#配置结果分页
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+#配置索引实时更新
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
