@@ -123,13 +123,13 @@ def regist(request):
 
             # 为了防止非人为激活，需要将激活地址加密
             # 带有有效期的序列化
-            # 1 得到序列化工具
+            # 0001 得到序列化工具
             serutil = Serializer(settings.SECRET_KEY)
-            # 2 使用工具对字典对象序列化
+            # 0002 使用工具对字典对象序列化
             result =  serutil.dumps({"userid": user.id }).decode("utf-8")
             # print(result, type(result))
 
-            mail = EmailMultiAlternatives("点击激活用户","<a href = 'http://127.0.0.1:8000/polls/active/%s/'>点击激活</a>"%(result,),settings.DEFAULT_FROM_EMAIL,[email])
+            mail = EmailMultiAlternatives("点击激活用户","<a href = 'http://127.0.0.0001:8000/polls/active/%s/'>点击激活</a>"%(result,),settings.DEFAULT_FROM_EMAIL,[email])
             mail.content_subtype = "html"
             mail.send()
 
@@ -153,7 +153,7 @@ def active(request,info):
 
 def verify(request):
     # try:
-    #     with open('1.png', 'wb') as f:
+    #     with open('0002.png', 'wb') as f:
     #         return HttpResponse(f.readable())
     # except Exception as e:
     #     print(e)
